@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const handlebars = require('express-handlebars');
 const app = express();
 const port = 3000;
-const routes = require('./routes');
+const route = require('./routes');
 
 //HTTP loggers
 app.use(express.urlencoded({
@@ -21,7 +21,7 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'sources/views'));
 
 //Routes init
-routes(app);
+route(app);
 
 app.get('/', (req, res) => {
     res.render('home')
