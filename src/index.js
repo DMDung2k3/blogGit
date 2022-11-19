@@ -8,15 +8,20 @@ const port = 3000;
 const route = require('./routes');
 
 //HTTP loggers
-app.use(express.urlencoded({
-    extended: true
-}))
-app.use(express.json())
-app.use(morgan('combined'))
-//templates engine 
-app.engine('hbs', handlebars.engine({
-    extname: 'hbs',
-}));
+app.use(
+    express.urlencoded({
+        extended: true,
+    }),
+);
+app.use(express.json());
+app.use(morgan('combined'));
+//templates engine
+app.engine(
+    'hbs',
+    handlebars.engine({
+        extname: 'hbs',
+    }),
+);
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'sources/views'));
 
@@ -24,10 +29,9 @@ app.set('views', path.join(__dirname, 'sources/views'));
 route(app);
 
 app.get('/', (req, res) => {
-    res.render('home')
+    res.render('home');
 });
 
-
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+    console.log(`Example app listening on port ${port}`);
+});
