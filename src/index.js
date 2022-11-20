@@ -3,9 +3,14 @@ const express = require('express');
 const { engine } = require('express-handlebars');
 const morgan = require('morgan');
 const handlebars = require('express-handlebars');
+
 const app = express();
 const port = 3000;
+const db = require('./config/db');
 const route = require('./routes');
+
+//Connect db
+db.connect();
 
 //HTTP loggers
 app.use(
