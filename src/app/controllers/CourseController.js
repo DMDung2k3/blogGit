@@ -18,11 +18,15 @@ class CourseController {
     //[POST] /courses/create
     store(req, res, next) {
         const formData = req.body;
-        formData.image = `https://i.ytimg.com/vi/${req.body.videoId}/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCJ7GkmVcmAg6KPKaAPAX0DyTnCvw`
+        // formData.image = `https://i.ytimg.com/vi/${req.body.videoId}/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAUk6B51gwcMQn7B-DtNtDXwmmhTQ`
+        formData.image = `https://img.youtube.com/vi/${req.body.videoId}/default.jpg`
         // res.json(req.body)
         const course = new Course(formData)
-        course.save();
-        res.send('course save')
+        course.save()
+            .then(() => res.redirect('/'))
+            .catch((error) => {
+
+            })
     }
 }
 module.exports = new CourseController();

@@ -4,7 +4,6 @@ const { engine } = require('express-handlebars');
 const morgan = require('morgan');
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
-
 const app = express();
 const port = 3000;
 const db = require('./config/db');
