@@ -3,6 +3,7 @@ const express = require('express');
 const { engine } = require('express-handlebars');
 const morgan = require('morgan');
 const handlebars = require('express-handlebars');
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3000;
@@ -11,7 +12,12 @@ const route = require('./routes');
 
 //Connect db
 db.connect();
-
+app.use(
+    bodyParser.urlencoded({
+        extended: true,
+    }),
+);
+app.use(bodyParser.json());
 //HTTP loggers
 app.use(
     express.urlencoded({
@@ -40,3 +46,4 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
 });
+
