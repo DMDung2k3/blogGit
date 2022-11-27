@@ -18,15 +18,21 @@ class CourseController {
     //[POST] /courses/create
     store(req, res, next) {
         const formData = req.body;
-        // formData.image = `https://i.ytimg.com/vi/${req.body.videoId}/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAUk6B51gwcMQn7B-DtNtDXwmmhTQ`
-        formData.image = `https://img.youtube.com/vi/${req.body.videoId}/default.jpg`
-        // res.json(req.body)
+        // formData.image = `https://img.youtube.com/vi/${req.body.videoId}/hqdefault.jpg`
+        formData.image = `https://img.youtube.com/vi/${req.body.videoId}/maxresdefault.jpg`
         const course = new Course(formData)
         course.save()
             .then(() => res.redirect('/'))
             .catch((error) => {
-
             })
+    }
+
+    //[GET] /courses/:id/edit
+    edit(req, res, next) {
+        Course.findById(req.params.id)
+            .then(course => res.render('courses/edit',
+                { course: mongooseToObject(course) }))
+            .catch(next)
     }
 }
 module.exports = new CourseController();
