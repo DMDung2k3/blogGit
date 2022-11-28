@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const { arrayAtomicsBackupSymbol } = require('mongoose/lib/helpers/symbols');
+const mongooseDelete = require('mongoose-delete');
 const slug = require('mongoose-slug-generator');
-mongoose.plugin(slug);
+
+
 const Schema = mongoose.Schema;
 const Course = new Schema({
     id: { type: Object },
@@ -14,5 +16,14 @@ const Course = new Schema({
 }, {
     timestamps: true
 });
+
+
+//Add plugin
+Course.plugin(mongooseDelete, {
+    deletedAt: true,
+    overrideMethods: 'all'
+});
+mongoose.plugin(slug);
+
 
 module.exports = mongoose.model('Course', Course)

@@ -1,5 +1,9 @@
 <div class="mt-4">
-  <h3>MY COURSES</h3>
+  <div>
+    <h3>MY COURSES</h3>
+    <a href="/me/trash/courses">Trash Can
+      <i class="fa-sharp fa-solid fa-trash-can"></i></a>
+  </div>
   <table class="table mt-4">
     <thead>
       <tr>
@@ -27,6 +31,11 @@
               data-id="{{this._id}}"
             >Delete</a>
           </td>
+        </tr>
+      {{else}}
+        <tr>
+          <td colspan="5" class="text-center">You have not posted any courses
+            <a href="/courses/create">Create new courses</a></td>
         </tr>
       {{/each}}
     </tbody>
