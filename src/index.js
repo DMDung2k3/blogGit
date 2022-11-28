@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const { engine } = require('express-handlebars');
 const morgan = require('morgan');
+const methodOverride = require('method-override')
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const app = express();
@@ -9,6 +10,7 @@ const port = 3000;
 const db = require('./config/db');
 const route = require('./routes');
 
+app.use(express.static(__dirname + '/public'));
 //Connect db
 db.connect();
 app.use(
@@ -17,6 +19,7 @@ app.use(
     }),
 );
 app.use(bodyParser.json());
+app.use(methodOverride('_method'))
 //HTTP loggers
 app.use(
     express.urlencoded({

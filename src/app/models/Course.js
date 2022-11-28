@@ -4,7 +4,7 @@ const slug = require('mongoose-slug-generator');
 mongoose.plugin(slug);
 const Schema = mongoose.Schema;
 const Course = new Schema({
-    _id: { type: Object },
+    id: { type: Object },
     name: { type: String, required: true },
     description: { type: String },
     image: { type: String },
